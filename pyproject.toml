@@ -15,22 +15,20 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest>=8.4.2,<9.0.0",
-    "pytest-django>=4.11.1,<5.0.0", 
+    "pytest-django>=4.11.1,<5.0.0",
     "pytest-cov>=7.0.0,<8.0.0",
     "factory-boy>=3.3.3,<4.0.0",
     "black>=25.9.0,<26.0.0",
     "faker>=24.0.0,<25.0.0",
 ]
 
-[project.scripts]
-manage = "project.manage:main"
-
-[tool.poetry]
-packages = [{include = "to_do_list", from = "src"}]
+# УБИРАЕМ Poetry секции или исправляем пути
+# [tool.poetry]
+# packages = [{include = "project", from = "src"}]
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "project.settings"
