@@ -1,0 +1,102 @@
+INFO 2025-10-18 13:14:06,490 autoreload 17100 40300 Watching for file changes with StatReloader
+INFO 2025-10-18 13:16:14,072 autoreload 17100 40300 C:\D\Python\WebPy\ToDoList\to_do_list\src\todos\views.py changed, reloading.
+INFO 2025-10-18 13:16:14,520 autoreload 23708 35332 Watching for file changes with StatReloader
+INFO 2025-10-18 13:16:36,312 autoreload 23708 35332 C:\D\Python\WebPy\ToDoList\to_do_list\src\accounts\views.py changed, reloading.
+INFO 2025-10-18 13:16:36,907 autoreload 31148 34564 Watching for file changes with StatReloader
+INFO 2025-10-18 13:17:35,632 autoreload 31148 34564 C:\D\Python\WebPy\ToDoList\to_do_list\src\accounts\views.py changed, reloading.
+INFO 2025-10-18 13:17:36,195 autoreload 35292 37728 Watching for file changes with StatReloader
+INFO 2025-10-18 15:33:07,737 views 13740 22584 Todo list accessed by user: user0
+INFO 2025-10-18 15:33:07,741 views 13740 22584 Todo created - ID: 1, Title: AJAX Task, User: user0
+INFO 2025-10-18 15:33:07,768 views 13740 22584 Todo list accessed by user: user1
+WARNING 2025-10-18 15:33:07,787 views 13740 22584 Todo creation failed - User: user1, Errors: <ul class="errorlist"><li>title<ul class="errorlist"><li>This field is required.</li></ul></li></ul>
+INFO 2025-10-18 15:33:07,818 views 13740 22584 Todo updated - ID: 2, User: user2
+INFO 2025-10-18 15:33:07,852 views 13740 22584 Todo deleted - ID: 3, Title: Test Todo 1, User: user3
+INFO 2025-10-18 15:33:07,884 views 13740 22584 Todo completed - ID: 4, User: user4
+INFO 2025-10-18 15:33:07,916 views 13740 22584 Todo uncompleted - ID: 5, User: user5
+INFO 2025-10-18 15:33:07,941 views 13740 22584 Todo list accessed by user: user6
+INFO 2025-10-18 15:33:07,944 views 13740 22584 Todo created - ID: 6, Title: Mixed Test, User: user6
+INFO 2025-10-18 15:33:07,947 views 13740 22584 Todo list accessed by user: user6
+INFO 2025-10-18 15:33:08,427 views 13740 22584 Todo list accessed by user: user20
+INFO 2025-10-18 15:33:08,458 views 13740 22584 Todo list accessed by user: user21
+INFO 2025-10-18 15:33:08,460 views 13740 22584 Todo created - ID: 23, Title: New Task, User: user21
+INFO 2025-10-18 15:33:08,483 views 13740 22584 Todo list accessed by user: user22
+WARNING 2025-10-18 15:33:08,487 views 13740 22584 Todo creation failed - User: user22, Errors: <ul class="errorlist"><li>title<ul class="errorlist"><li>This field is required.</li></ul></li></ul>
+INFO 2025-10-18 15:33:08,596 views 13740 22584 Todo updated - ID: 26, User: user26
+INFO 2025-10-18 15:33:08,635 views 13740 22584 Todo completed - ID: 27, User: user27
+INFO 2025-10-18 15:33:08,673 views 13740 22584 Todo uncompleted - ID: 28, User: user28
+INFO 2025-10-18 15:35:32,491 views 33216 24432 Todo list accessed by user: user0
+INFO 2025-10-18 15:35:32,491 views 33216 24432 Todo created - ID: 29, Title: AJAX Task, User: user0
+INFO 2025-10-18 15:35:32,518 views 33216 24432 Todo list accessed by user: user1
+WARNING 2025-10-18 15:35:32,531 views 33216 24432 Todo creation failed - User: user1, Errors: <ul class="errorlist"><li>title<ul class="errorlist"><li>This field is required.</li></ul></li></ul>
+INFO 2025-10-18 15:35:32,570 views 33216 24432 Todo updated - ID: 30, User: user2
+INFO 2025-10-18 15:35:32,606 views 33216 24432 Todo deleted - ID: 31, Title: Test Todo 1, User: user3
+INFO 2025-10-18 15:35:32,657 views 33216 24432 Todo completed - ID: 32, User: user4
+INFO 2025-10-18 15:35:32,699 views 33216 24432 Todo uncompleted - ID: 33, User: user5
+INFO 2025-10-18 15:35:32,727 views 33216 24432 Todo list accessed by user: user6
+INFO 2025-10-18 15:35:32,729 views 33216 24432 Todo created - ID: 34, Title: Mixed Test, User: user6
+INFO 2025-10-18 15:35:32,733 views 33216 24432 Todo list accessed by user: user6
+INFO 2025-10-18 15:35:33,000 views 33216 24432 Todo list accessed by user: user20
+INFO 2025-10-18 15:35:33,034 views 33216 24432 Todo list accessed by user: user21
+INFO 2025-10-18 15:35:33,037 views 33216 24432 Todo created - ID: 51, Title: New Task, User: user21
+INFO 2025-10-18 15:35:33,059 views 33216 24432 Todo list accessed by user: user22
+WARNING 2025-10-18 15:35:33,062 views 33216 24432 Todo creation failed - User: user22, Errors: <ul class="errorlist"><li>title<ul class="errorlist"><li>This field is required.</li></ul></li></ul>
+INFO 2025-10-18 15:35:33,161 views 33216 24432 Todo updated - ID: 54, User: user26
+INFO 2025-10-18 15:35:33,188 views 33216 24432 Todo completed - ID: 55, User: user27
+INFO 2025-10-18 15:35:33,219 views 33216 24432 Todo uncompleted - ID: 56, User: user28
+INFO 2025-10-18 15:38:37,318 views 36212 4516 Todo list accessed by user: user0
+INFO 2025-10-18 15:38:37,320 views 36212 4516 Todo created - ID: 57, Title: AJAX Task, User: user0
+INFO 2025-10-18 15:38:37,346 views 36212 4516 Todo list accessed by user: user1
+WARNING 2025-10-18 15:38:37,359 views 36212 4516 Todo creation failed - User: user1, Errors: <ul class="errorlist"><li>title<ul class="errorlist"><li>This field is required.</li></ul></li></ul>
+INFO 2025-10-18 15:38:37,387 views 36212 4516 Todo updated - ID: 58, User: user2
+INFO 2025-10-18 15:38:37,418 views 36212 4516 Todo deleted - ID: 59, Title: Test Todo 1, User: user3
+INFO 2025-10-18 15:38:37,448 views 36212 4516 Todo completed - ID: 60, User: user4
+INFO 2025-10-18 15:38:37,478 views 36212 4516 Todo uncompleted - ID: 61, User: user5
+INFO 2025-10-18 15:38:37,502 views 36212 4516 Todo list accessed by user: user6
+INFO 2025-10-18 15:38:37,504 views 36212 4516 Todo created - ID: 62, Title: Mixed Test, User: user6
+INFO 2025-10-18 15:38:37,508 views 36212 4516 Todo list accessed by user: user6
+INFO 2025-10-18 15:38:37,650 views 36212 4516 Todo list accessed by user: user20
+INFO 2025-10-18 15:38:37,692 views 36212 4516 Todo list accessed by user: user21
+INFO 2025-10-18 15:38:37,695 views 36212 4516 Todo created - ID: 79, Title: New Task, User: user21
+INFO 2025-10-18 15:38:37,729 views 36212 4516 Todo list accessed by user: user22
+WARNING 2025-10-18 15:38:37,731 views 36212 4516 Todo creation failed - User: user22, Errors: <ul class="errorlist"><li>title<ul class="errorlist"><li>This field is required.</li></ul></li></ul>
+INFO 2025-10-18 15:38:37,841 views 36212 4516 Todo updated - ID: 82, User: user26
+INFO 2025-10-18 15:38:37,867 views 36212 4516 Todo completed - ID: 83, User: user27
+INFO 2025-10-18 15:38:37,895 views 36212 4516 Todo uncompleted - ID: 84, User: user28
+INFO 2025-10-18 15:39:35,478 views 29080 15684 Todo list accessed by user: user0
+INFO 2025-10-18 15:39:35,480 views 29080 15684 Todo created - ID: 85, Title: AJAX Task, User: user0
+INFO 2025-10-18 15:39:35,502 views 29080 15684 Todo list accessed by user: user1
+WARNING 2025-10-18 15:39:35,513 views 29080 15684 Todo creation failed - User: user1, Errors: <ul class="errorlist"><li>title<ul class="errorlist"><li>This field is required.</li></ul></li></ul>
+INFO 2025-10-18 15:39:35,543 views 29080 15684 Todo updated - ID: 86, User: user2
+INFO 2025-10-18 15:39:35,570 views 29080 15684 Todo deleted - ID: 87, Title: Test Todo 1, User: user3
+INFO 2025-10-18 15:39:35,600 views 29080 15684 Todo completed - ID: 88, User: user4
+INFO 2025-10-18 15:39:35,632 views 29080 15684 Todo uncompleted - ID: 89, User: user5
+INFO 2025-10-18 15:39:35,659 views 29080 15684 Todo list accessed by user: user6
+INFO 2025-10-18 15:39:35,661 views 29080 15684 Todo created - ID: 90, Title: Mixed Test, User: user6
+INFO 2025-10-18 15:39:35,666 views 29080 15684 Todo list accessed by user: user6
+INFO 2025-10-18 15:39:35,935 views 29080 15684 Todo list accessed by user: user20
+INFO 2025-10-18 15:39:35,970 views 29080 15684 Todo list accessed by user: user21
+INFO 2025-10-18 15:39:35,972 views 29080 15684 Todo created - ID: 107, Title: New Task, User: user21
+INFO 2025-10-18 15:39:35,995 views 29080 15684 Todo list accessed by user: user22
+WARNING 2025-10-18 15:39:35,996 views 29080 15684 Todo creation failed - User: user22, Errors: <ul class="errorlist"><li>title<ul class="errorlist"><li>This field is required.</li></ul></li></ul>
+INFO 2025-10-18 15:39:36,094 views 29080 15684 Todo updated - ID: 110, User: user26
+INFO 2025-10-18 15:39:36,121 views 29080 15684 Todo completed - ID: 111, User: user27
+INFO 2025-10-18 15:39:36,150 views 29080 15684 Todo uncompleted - ID: 112, User: user28
+INFO 2025-10-18 15:40:59,413 views 12352 13404 Todo list accessed by user: user0
+INFO 2025-10-18 15:40:59,417 views 12352 13404 Todo created - ID: 113, Title: AJAX Task, User: user0
+INFO 2025-10-18 15:40:59,441 views 12352 13404 Todo list accessed by user: user1
+WARNING 2025-10-18 15:40:59,454 views 12352 13404 Todo creation failed - User: user1, Errors: <ul class="errorlist"><li>title<ul class="errorlist"><li>This field is required.</li></ul></li></ul>
+INFO 2025-10-18 15:40:59,483 views 12352 13404 Todo updated - ID: 114, User: user2
+INFO 2025-10-18 15:40:59,511 views 12352 13404 Todo deleted - ID: 115, Title: Test Todo 1, User: user3
+INFO 2025-10-18 15:40:59,541 views 12352 13404 Todo completed - ID: 116, User: user4
+INFO 2025-10-18 15:40:59,570 views 12352 13404 Todo uncompleted - ID: 117, User: user5
+INFO 2025-10-18 15:40:59,594 views 12352 13404 Todo list accessed by user: user6
+INFO 2025-10-18 15:40:59,595 views 12352 13404 Todo created - ID: 118, Title: Mixed Test, User: user6
+INFO 2025-10-18 15:40:59,599 views 12352 13404 Todo list accessed by user: user6
+INFO 2025-10-18 15:40:59,732 views 12352 13404 Todo list accessed by user: user20
+INFO 2025-10-18 15:40:59,766 views 12352 13404 Todo list accessed by user: user21
+INFO 2025-10-18 15:40:59,769 views 12352 13404 Todo created - ID: 135, Title: New Task, User: user21
+INFO 2025-10-18 15:40:59,794 views 12352 13404 Todo list accessed by user: user22
+WARNING 2025-10-18 15:40:59,795 views 12352 13404 Todo creation failed - User: user22, Errors: <ul class="errorlist"><li>title<ul class="errorlist"><li>This field is required.</li></ul></li></ul>
+INFO 2025-10-18 15:40:59,890 views 12352 13404 Todo updated - ID: 138, User: user26
+INFO 2025-10-18 15:40:59,921 views 12352 13404 Todo completed - ID: 139, User: user27
+INFO 2025-10-18 15:40:59,950 views 12352 13404 Todo uncompleted - ID: 140, User: user28
