@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}{{ todo.title }} - To-Do List{% endblock %}
+
+{% block content %}
+<div class="todo-header">
+    <h2>👁️ Просмотр задачи</h2>
+    <a href="{% url 'todos:todo_list' %}" class="btn btn-primary">← Назад к списку</a>
+</div>
+
+<div class="todo-item {% if todo.completed %}completed{% endif %}">
+    <div class="todo-title">
+        {% if todo.completed %}✅{% else %}⭕{% endif %}
+        {{ todo.title }}
+    </div>
+    
+    {% if todo.content %}
+    <div class="todo-content" style="margin: 20px 0; padding: 15px; background: white; border-radius: 8px;">
+        <h4>📋 Описание:</h4>
+        {{ todo.content|linebreaks }}
+    </div>
+    {% endif %}
+    
+    <div class="todo-meta">
+        <div class="todo-info">
+            <div><strong>Приоритет:</strong> 
+                <span class="priority priority-{{ todo.priority }}">
+                    {{ todo.get_priority_display }}
+                </span>
+            </div>
+            
+            <div><strong>Статус:</strong> 
+                {% if todo.completed %}
+                    <span style="color: #27ae60;">✅ Выполнено</span>
+                {% else %}
+                    <span style="color: #e74c3c;">⏳ В процессе</span>
+                {% endif %}
+            </div>
+            
+            {% if todo.due_date %}
+            <div><strong>Срок выполнения:</strong> 
+                <span class="due-date">{{ todo.due_date|date:"d.m.Y H:i" }}</span>
+            </div>
+            {% endif %}
+            
+            <div><strong>Создано:</strong> {{ todo.created_at|date:"d.m.Y H:i" }}</div>
+            <div><strong>Обновлено:</strong> {{ todo.updated_at|date:"d.m.Y H:i" }}</div>
+        </div>
+        
+        <div class="todo-actions">
+            {% if not todo.completed %}
+                <form method="post" action="{% url 'todos:todo_complete' todo.id %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">✅ Отметить выполненной</button>
+                </form>
+            {% else %}
+                <form method="post" action="{% url 'todos:todo_uncomplete' todo.id %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-warning">↩️ Возобновить задачу</button>
+                </form>
+            {% endif %}
+            
+            <form method="post" action="{% url 'todos:todo_detail' todo.id %}" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-danger" 
+                        onclick="return confirm('Удалить задачу «{{ todo.title }}»?')">
+                    🗑️ Удалить задачу
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Форма редактирования -->
+<div class="create-form" style="margin-top: 30px;">
+    <h3>✏️ Редактировать задачу</h3>
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="id_title">Название задачи:</label>
+            <input type="text" name="title" value="{{ todo.title }}" class="form-control" required id="id_title">
+        </div>
+        
+        <div class="form-group">
+            <label for="id_content">Описание:</label>
+            <textarea name="content" class="form-control" id="id_content">{{ todo.content }}</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="id_priority">Приоритет:</label>
+            <select name="priority" class="form-control" id="id_priority">
+                <option value="low" {% if todo.priority == 'low' %}selected{% endif %}>🔵 Низкий</option>
+                <option value="medium" {% if todo.priority == 'medium' %}selected{% endif %}>🟡 Средний</option>
+                <option value="high" {% if todo.priority == 'high' %}selected{% endif %}>🔴 Высокий</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="id_due_date">Срок выполнения:</label>
+            <input type="datetime-local" name="due_date" value="{{ todo.due_date|date:'Y-m-d\\TH:i' }}" 
+                   class="form-control" id="id_due_date">
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-success">💾 Сохранить изменения</button>
+            <a href="{% url 'todos:todo_list' %}" class="btn btn-secondary">❌ Отмена</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

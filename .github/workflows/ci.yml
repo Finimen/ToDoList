@@ -1,0 +1,83 @@
+name: Django CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9"]
+    
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: mysecretpassword
+          POSTGRES_DB: todo
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libpq-dev python3-dev
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        # Устанавливаем только зависимости, не сам пакет
+        pip install django==4.2.7 psycopg2-binary
+        
+    - name: Install test dependencies
+      run: |
+        pip install pytest pytest-django pytest-cov factory-boy faker black
+        
+    - name: Setup test environment
+      run: |
+        # Добавляем src в PYTHONPATH
+        export PYTHONPATH=$PYTHONPATH:$(pwd)/src
+        python src/manage.py migrate --settings=project.settings
+        
+    - name: Run tests with pytest
+      env:
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
+        DJANGO_SETTINGS_MODULE: project.settings
+        SECRET_KEY: test-secret-key-for-ci
+        DEBUG: False
+        PYTHONPATH: ${{ github.workspace }}/src
+      run: |
+        cd src
+        pytest todos/tests/ -v --cov=todos --cov-report=xml
+        
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./src/coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+
+    - name: Run Django management checks
+      env:
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
+        DJANGO_SETTINGS_MODULE: project.settings
+        SECRET_KEY: test-secret-key-for-ci
+        PYTHONPATH: ${{ github.workspace }}/src
+      run: |
+        cd src
+        python manage.py check --settings=project.settings
