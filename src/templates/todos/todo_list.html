@@ -1,0 +1,282 @@
+{% extends "base.html" %}
+
+{% block title %}Мои задачи - To-Do List{% endblock %}
+
+{% block extra_css %}
+<style>
+    .todo-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #ecf0f1;
+    }
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        transition: all 0.3s;
+    }
+    .btn-primary {
+        background: #3498db;
+        color: white;
+    }
+    .btn-primary:hover {
+        background: #2980b9;
+    }
+    .btn-success {
+        background: #27ae60;
+        color: white;
+    }
+    .btn-warning {
+        background: #f39c12;
+        color: white;
+    }
+    .btn-danger {
+        background: #e74c3c;
+        color: white;
+    }
+    .todo-item {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 15px;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .todo-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .todo-item.completed {
+        background: #d4edda;
+        border-color: #c3e6cb;
+        opacity: 0.8;
+    }
+    .todo-title {
+        font-size: 1.3em;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #2c3e50;
+    }
+    .todo-item.completed .todo-title {
+        text-decoration: line-through;
+        color: #6c757d;
+    }
+    .todo-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        font-size: 0.9em;
+        color: #6c757d;
+    }
+    .todo-actions {
+        display: flex;
+        gap: 10px;
+    }
+    .priority {
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 0.8em;
+        font-weight: bold;
+    }
+    .priority-high { background: #e74c3c; color: white; }
+    .priority-medium { background: #f39c12; color: white; }
+    .priority-low { background: #27ae60; color: white; }
+    .due-date {
+        color: #e74c3c;
+        font-weight: bold;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 50px 20px;
+        color: #6c757d;
+    }
+    .empty-state i {
+        font-size: 3em;
+        margin-bottom: 20px;
+        opacity: 0.5;
+    }
+    .create-form {
+        background: #f8f9fa;
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        border: 2px dashed #dee2e6;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+    .form-control {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        font-size: 14px;
+    }
+    textarea.form-control {
+        min-height: 100px;
+        resize: vertical;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="todo-header">
+    <h2>📝 Мои задачи</h2>
+    <button type="button" class="btn btn-primary" onclick="toggleCreateForm()">
+        ➕ Новая задача
+    </button>
+</div>
+
+<!-- Форма создания задачи -->
+<div id="createForm" class="create-form" style="display: none;">
+    <h3>Создать новую задачу</h3>
+    <form method="post" id="todoCreateForm">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="id_title">Название задачи:</label>
+            {{ form.title }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_content">Описание:</label>
+            {{ form.content }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_priority">Приоритет:</label>
+            {{ form.priority }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_due_date">Срок выполнения:</label>
+            {{ form.due_date }}
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-success">✅ Создать задачу</button>
+            <button type="button" class="btn btn-secondary" onclick="toggleCreateForm()">❌ Отмена</button>
+        </div>
+    </form>
+</div>
+
+<!-- Список задач -->
+<div class="todo-list">
+    {% if todos %}
+        {% for todo in todos %}
+            <div class="todo-item {% if todo.completed %}completed{% endif %}" id="todo-{{ todo.id }}">
+                <div class="todo-title">
+                    {% if todo.completed %}✅{% else %}⭕{% endif %}
+                    {{ todo.title }}
+                </div>
+                
+                {% if todo.content %}
+                <div class="todo-content">
+                    {{ todo.content|linebreaks }}
+                </div>
+                {% endif %}
+                
+                <div class="todo-meta">
+                    <div class="todo-info">
+                        <span class="priority priority-{{ todo.priority }}">
+                            {{ todo.get_priority_display }}
+                        </span>
+                        {% if todo.due_date %}
+                            <span class="due-date">
+                                📅 До: {{ todo.due_date|date:"d.m.Y H:i" }}
+                            </span>
+                        {% endif %}
+                        <span class="created-date">
+                            🕐 Создано: {{ todo.created_at|date:"d.m.Y" }}
+                        </span>
+                    </div>
+                    
+                    <div class="todo-actions">
+                        <a href="{% url 'todos:todo_detail' todo.id %}" class="btn btn-primary">
+                            👁️ Просмотр
+                        </a>
+                        
+                        {% if not todo.completed %}
+                            <form method="post" action="{% url 'todos:todo_complete' todo.id %}" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success">✅ Выполнено</button>
+                            </form>
+                        {% else %}
+                            <form method="post" action="{% url 'todos:todo_uncomplete' todo.id %}" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-warning">↩️ Возобновить</button>
+                            </form>
+                        {% endif %}
+                        
+                        <form method="post" action="{% url 'todos:todo_detail' todo.id %}" style="display: inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-danger" 
+                                    onclick="return confirm('Удалить задачу «{{ todo.title }}»?')">
+                                🗑️ Удалить
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="empty-state">
+            <div>📭</div>
+            <h3>Пока нет задач</h3>
+            <p>Создайте свою первую задачу, нажав кнопку «Новая задача»</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function toggleCreateForm() {
+        const form = document.getElementById('createForm');
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // AJAX обработка формы создания
+    document.getElementById('todoCreateForm')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        formData.append('X-Requested-With', 'XMLHttpRequest');
+        
+        fetch('', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload(); // Просто перезагружаем страницу для простоты
+            } else {
+                alert('Ошибка: ' + JSON.stringify(data.errors));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Произошла ошибка при создании задачи');
+        });
+    });
+</script>
+{% endblock %}
